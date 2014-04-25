@@ -4,6 +4,11 @@ services:
   - redis-server
 rvm:
   - 1.9.3
-  - 2.0.0
+  
 env:
   - "TEST_DB=14"
+before_script:
+  - mkdir -p shippable/testresults
+# write the rspec tests to the output dir
+script:
+  - rspec -f JUnit -o shippable/testresults/results.xml
